@@ -1,0 +1,16 @@
+body {
+    margin: 2em;
+}
+table {
+    margin: 2em;
+    border-collapse: collapse;
+}
+tr:nth-child(even) {
+    background-color: lightpink;
+}
+th {
+    padding-right: 2.5em;
+}
+td {
+    padding: .5em;
+}

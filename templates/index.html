@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel = "stylesheet" href = "{{ url_for('static', filename='styles.css') }}"/>
+  <title>Civilised Birthdays</title>
+</head>
+
+<body>
+  <h1>Birthday database</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>LastName</th>
+      <th>FirstName</th>
+      <th>Email</th>
+      <th>Birthday</th>
+      <th>SevenDayReminder</th>
+      <th>OneDayReminder</th>
+      <th>SameDayReminder</th>
+    </tr>
+    {% for bday in birthdays %}
+    <tr>
+      <td>{{ bday.id }}</td>
+      <td>{{ bday.lastname }}</td>
+      <td>{{ bday.firstname }}</td>
+      <td>{{ bday.email }}</td>
+      <td>{{ bday.birthday }}</td>
+      <td>{{ bday.seven_day_notify }}</td>
+      <td>{{ bday.one_day_notify }}</td>
+      <td>{{ bday.same_day_notify }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <h2>Adding new birthday</h2>
+  <form action="{{ url_for('index') }}" method="POST">
+    <label for="lname">Last Name:</label>
+    <input type="text" id="lname" name="lname" required>
+    <label for="fname">First Name:</label>
+    <input type="text" id="fname" name="fname" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="bday">Birthday:</label>
+    <input type="date" id="bday" name="bday" required>
+    <br>
+    <label for="seven_day">Seven Day Reminder:</label>
+    <input type="checkbox" id="seven_day" name="mycheckbox" value="7">
+    <br>
+    <label for="one_day">One Day Reminder:</label>
+    <input type="checkbox" id="one_day" name="mycheckbox" value="1">
+    <br>
+    <label for="same_day">Same Day Reminder:</label>
+    <input type="checkbox" id="same_day" name="mycheckbox" value="0">
+    <br>
+    <button type="submit">Add Birthday</button>
+  </form>
+
+</body>
+
+</html>
