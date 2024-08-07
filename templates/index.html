@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel = "stylesheet" href = "{{ url_for('static', filename='styles.css') }}"/>
-  <title>Civilised Birthdays</title>
-</head>
+{% block content %}
+<div class="container mt-2">
+<div class="row">
+  <div class="col-md-6">
+  <h1>{% block title %} Welcome {% endblock %}</h1>
+    <p>Welcome to the Boys' Birthday Hub!
+      Here, you'll find all the important dates to celebrate our friendships and each other's special days. This site is designed to keep us all connected and ensure we never miss a birthday. From planning parties to sending heartfelt wishes, we've got it all covered. Let's make every birthday unforgettable!
+      Happy Celebrating!
+    </p>
+  </div>
+</div>
 
-<body>
   <h1>Birthday database</h1>
   <table>
     <tr>
@@ -34,30 +37,5 @@
     </tr>
     {% endfor %}
   </table>
-  <h2>Adding new birthday</h2>
-  <form action="{{ url_for('index') }}" method="POST">
-    <label for="lname">Last Name:</label>
-    <input type="text" id="lname" name="lname" required>
-    <label for="fname">First Name:</label>
-    <input type="text" id="fname" name="fname" required>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="bday">Birthday:</label>
-    <input type="date" id="bday" name="bday" required>
-    <br>
-    <label for="seven_day">Seven Day Reminder:</label>
-    <input type="checkbox" id="seven_day" name="mycheckbox" value="7">
-    <br>
-    <label for="one_day">One Day Reminder:</label>
-    <input type="checkbox" id="one_day" name="mycheckbox" value="1">
-    <br>
-    <label for="same_day">Same Day Reminder:</label>
-    <input type="checkbox" id="same_day" name="mycheckbox" value="0">
-    <br>
-    <button type="submit">Add Birthday</button>
-  </form>
-
-</body>
-
-</html>
+</div>
+{% endblock %}

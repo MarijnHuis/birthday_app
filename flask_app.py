@@ -27,14 +27,23 @@ class Birthday(db.Model):
     def __repr__(self):
         return f'<Birthday {self.firstname}>'
 
-def add_birthday(lname, fname, email, bday, seven_day, one_day, same_day):
-    # currently breaks if email not unique
-    new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
-    db.session.add(new_bday)
-    db.session.commit()
+# def add_birthday(lname, fname, email, bday, seven_day, one_day, same_day):
+#     # currently breaks if email not unique
+#     new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
+#     db.session.add(new_bday)
+#     db.session.commit()
 
-@app.route('/', methods = ['GET','POST'])
+@app.route('/')
 def index():
+    birthdays = Birthday.query.order_by(Birthday.birthday.desc()).all()
+    return render_template("index.html", birthdays = birthdays)
+
+@app.route("/about/")
+def about():
+    return render_template("about.html")
+
+@app.route("/birthdays/", methods = ('GET','POST'))
+def birthday_page():
     if request.method == 'POST':
         lname = request.form["lname"]
         fname = request.form["fname"]
@@ -44,6 +53,12 @@ def index():
         seven_day = 1 if "7" in reminders else 0
         one_day = 1 if "1" in reminders else 0
         same_day = 1 if "0" in reminders else 0
-        add_birthday(lname, fname, email, bday, seven_day, one_day, same_day)
+
+        new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
+        db.session.add(new_bday)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+    
     birthdays = Birthday.query.order_by(Birthday.birthday.desc()).all()
-    return render_template("index.html", birthdays = birthdays)
+    return render_template("birthdays.html", birthdays=birthdays)
