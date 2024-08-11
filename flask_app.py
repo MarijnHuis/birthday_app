@@ -27,12 +27,6 @@ class Birthday(db.Model):
     
     def __repr__(self):
         return f'<Birthday {self.firstname}>'
-
-# def add_birthday(lname, fname, email, bday, seven_day, one_day, same_day):
-#     # currently breaks if email not unique
-#     new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
-#     db.session.add(new_bday)
-#     db.session.commit()
     
 @app.errorhandler(404)
 def page_not_found(error):
