@@ -1,11 +1,12 @@
 import os
 from datetime import datetime
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
 from config import Config
+from forms import NewBirthdayForm
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -26,39 +27,54 @@ class Birthday(db.Model):
     
     def __repr__(self):
         return f'<Birthday {self.firstname}>'
+    
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('errors/404.html'), 404
 
-# def add_birthday(lname, fname, email, bday, seven_day, one_day, same_day):
-#     # currently breaks if email not unique
-#     new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
-#     db.session.add(new_bday)
-#     db.session.commit()
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('errors/500.html'), 500
 
 @app.route('/')
 def index():
+    app.logger.debug("Getting  birthdays and sorting...")
     birthdays = Birthday.query.order_by(Birthday.birthday.desc()).all()
     return render_template("index.html", birthdays = birthdays)
 
-@app.route("/about/")
+@app.route("/about")
 def about():
     return render_template("about.html")
 
-@app.route("/birthdays/", methods = ('GET','POST'))
+@app.route("/birthdays", methods = ('GET','POST'))
 def birthday_page():
-    if request.method == 'POST':
-        lname = request.form["lname"]
-        fname = request.form["fname"]
-        email = request.form["email"]
-        bday = request.form["bday"]
-        reminders = request.form.getlist("mycheckbox")
-        seven_day = 1 if "7" in reminders else 0
-        one_day = 1 if "1" in reminders else 0
-        same_day = 1 if "0" in reminders else 0
+    form = NewBirthdayForm()
+    if form.validate_on_submit():
+        app.logger.debug("Reading form...")
+        lname = form.lastname.data
+        fname = form.firstname.data
+        email = form.email.data
+        bday = form.birthday.data
+        seven_day = form.seven_day_notify.data
+        one_day = form.one_day_notify.data
+        same_day = form.same_day_notify.data
 
-        new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=datetime.strptime(bday, "%Y-%m-%d"), seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
+        new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=bday, seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
+        app.logger.info("Adding new birthday to db")
         db.session.add(new_bday)
         db.session.commit()
 
         return redirect(url_for('index'))
-    
-    birthdays = Birthday.query.order_by(Birthday.birthday.desc()).all()
-    return render_template("birthdays.html", birthdays=birthdays)
+    app.logger.debug("Getting  birthdays and sorting...")
+    return render_template("birthdays.html", form=form)
+
+@app.route("/users")
+def users_page():
+    try:
+        return render_template('users_fake.html')
+    except:
+        abort(404)
+
+@app.route('/500')
+def error500():
+    abort(500)
