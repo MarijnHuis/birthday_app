@@ -5,32 +5,107 @@
   <div class="container">
     <div class="row">
       <h1> {% block title %} Birthdays {% endblock %} </h1>
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>LastName</th>
-          <th>FirstName</th>
-          <th>Email</th>
-          <th>Birthday</th>
-          <th>SevenDayReminder</th>
-          <th>OneDayReminder</th>
-          <th>SameDayReminder</th>
-        </tr>
-        {% for bday in birthdays %}
-        <tr>
-          <td>{{ bday.id }}</td>
-          <td>{{ bday.lastname }}</td>
-          <td>{{ bday.firstname }}</td>
-          <td>{{ bday.email }}</td>
-          <td>{{ bday.birthday }}</td>
-          <td>{{ bday.seven_day_notify }}</td>
-          <td>{{ bday.one_day_notify }}</td>
-          <td>{{ bday.same_day_notify }}</td>
-        </tr>
-        {% endfor %}
-      </table>
       <h2>Adding new birthday</h2>
+
+      <!--NEW FORM-->
       <form action="{{ url_for('birthday_page') }}" method="POST">
+        {{ form.csrf_token }}
+
+        <p>
+          {{ form.firstname.label }}
+          {{ form.firstname() }}
+        </p>
+        
+        {% if form.firstname.errors %}
+          <ul class="errors">
+              {% for error in form.firstname.errors %}
+                  <li>{{ error }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <p>
+          {{ form.lastname.label }}
+          {{ form.lastname() }}
+        </p>
+        
+        {% if form.lastname.errors %}
+          <ul class="errors">
+              {% for error in form.lastname.errors %}
+                  <li>{{ error }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <p>
+          {{ form.email.label }}
+          {{ form.email() }}
+        </p>
+        
+        {% if form.email.errors %}
+          <ul class="errors">
+              {% for error in form.email.errors %}
+                  <li>{{ error }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <p>
+          {{ form.birthday.label }}
+          {{ form.birthday() }}
+        </p>
+        
+        {% if form.birthday.errors %}
+          <ul class="errors">
+              {% for error in form.birthday.errors %}
+                  <li>{{ error }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+
+        <p>
+          {{ form.seven_day_notify() }} {{ form.seven_day_notify.label }}
+        </p>
+
+        {% if form.seven_day_notify.errors %}
+            <ul class="errors">
+                {% for error in form.seven_day_notify.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+          {{ form.one_day_notify() }} {{ form.one_day_notify.label }}
+        </p>
+
+        {% if form.one_day_notify.errors %}
+            <ul class="errors">
+                {% for error in form.one_day_notify.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+          {{ form.same_day_notify() }} {{ form.same_day_notify.label }}
+        </p>
+
+        {% if form.same_day_notify.errors %}
+            <ul class="errors">
+                {% for error in form.same_day_notify.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+          <input type="submit" value="Add birthday">
+        </p>
+      </form>
+
+      <!--OLD FORM-->
+      <!-- <form action="{{ url_for('birthday_page') }}" method="POST">
         <label for="lname">Last Name:</label>
         <input type="text" id="lname" name="lname" required>
         <label for="fname">First Name:</label>
@@ -51,16 +126,7 @@
         <input type="checkbox" id="same_day" name="mycheckbox" value="0">
         <br>
         <button type="submit">Add Birthday</button>
-      </form>
-    </div>
-    <div class="row mt-2">
-      <h1>Statistics</h1>
-      <ul>
-        <li>Most people celebrate their birthday in ...</li>
-        <li>Oldest ...</li>
-        <li>Youngest ...</li>
-        <li>Aveage age ...</li>
-      </ul>
+      </form> -->
     </div>
   </div>
 
