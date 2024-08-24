@@ -40,9 +40,33 @@
                 <a class="nav-link" href="{{ url_for('about') }}"><h2>About</h2></a>
               </li>
             </ul>
+            <ul class="navbar-nav">
+              {% if current_user.is_anonymous %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('login') }}"><h2>Login</h2></a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}"><h2>Logout</h2></a>
+              </li>
+              {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<hr>
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+{% endif %}
+{% endwith %}
+
+
 
 <div class="content">
     {% block content %} {% endblock %}
