@@ -14,3 +14,7 @@ th {
 td {
     padding: .5em;
 }
+navbar-nav > li:last-child
+{
+    float:right;
+}
