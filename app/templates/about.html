@@ -2,59 +2,65 @@
 
 {% block content %}
 
-  <div class="container mt-2">
-    <div class="row">
-      <div class="col-md-6">
-        <h1>{% block title %} About {{ current_user.username }} {% endblock %}</h1>
-        <h1 class="text-center">Big T</h1>
-        <h2 class="text-left">Bio:</h2>
-        <p class="text-left">
-            In the bustling city of London, a peculiar figure stood out among the crowds. Towering above most and unmistakably shaped like the letter T, Big T had a presence that was hard to ignore. His broad shoulders formed the top crossbar of the T, while his sturdy legs made up the vertical stem. This unique shape was just the beginning of his extraordinary story.
-            Big T was born in the picturesque countryside of the Netherlands. From a young age, he was different—not just because of his shape but also due to his immense strength and agility. The local children admired and were often in awe of him, especially when he joined in their games. Despite his unconventional form, Big T had an unyielding determination to fit in and excel.
-            As he grew older, Big T discovered a passion for rugby. The sport captivated him, and he devoted countless hours to honing his skills. His efforts paid off when he was recruited by a team in New Zealand, a country renowned for its rugby prowess. Moving halfway across the world was a daunting prospect, but Big T embraced the challenge.
-            New Zealand welcomed him with open arms. His teammates and the local community quickly grew fond of the friendly giant. On the rugby field, Big T was a force to be reckoned with. His unique shape gave him a distinct advantage—his wide reach made tackling him a herculean task for the opposition. His time in New Zealand was transformative, not just for his rugby career but also for his personal growth. He learned to adapt, to embrace his uniqueness, and to push beyond his limits.
-            Years later, an opportunity arose that brought Big T to the vibrant city of London. The city was a melting pot of cultures, bustling with life and possibilities. Big T joined a professional rugby team, where his fame and skills quickly spread. He became a beloved figure both on and off the field, known for his sportsmanship, dedication, and the unmistakable T-shaped silhouette that had become iconic.
-            But rugby was not Big T’s only talent. During his time in New Zealand, he had discovered a love for coding. What began as a hobby soon turned into another passion. He taught himself Python and found that he had a knack for it. This newfound skill opened doors to a different kind of career.
-            In London, when he wasn't training or playing rugby, Big T worked at a prestigious bank. Here, he was known as a Python legend. His ability to tackle complex coding problems with the same determination he displayed on the rugby field earned him respect and admiration from his colleagues. The bank valued his unique perspective and innovative solutions, which often stemmed from his unconventional way of thinking.
-            Despite his busy schedule, Big T never forgot his roots. He often visited the Netherlands, where he shared stories of his adventures and inspired young athletes to pursue their dreams, no matter how different they might seem. His journey from a small Dutch village to the bustling streets of London was a testament to the power of embracing one’s uniqueness and pursuing one’s passions with unwavering dedication.
-            In the heart of London, whether in the office or on the rugby pitch, Big T continued to leave an indelible mark on everyone he met. His story was a celebration of diversity, resilience, and the endless possibilities that come with embracing who you are.
-        </p>
-        <h2 class="text-left">Headshot:</h2>
-        <img src="{{ url_for('static', filename='images/letter_t.jpg') }}" class="img-fluid" alt="This is Big T">
-      </div>
-      <div class="col-md-6">
-          <h1 class="text-center">Pom</h1>
-          <h2 class="text-left">Bio:</h2>
-          <p class="text-left">To be made</p>
-          <h2 class="text-left">Headshot:</h2>
-          <p>To be taken</p>
-      </div>
-    </div>
-    <div>
-      <h3 id="contact">Contact</h3>
-        <div class="row">
-          <div class="col-12 col-sm-4 mb-3">
-              <label for="exampleFormControlInput0" class="form-label">Name</label>
-              <input type="text" class="form-control" id="exampleFormControlInput0" placeholder="John Doe">
-          </div>
-          <div class="col-12 col-sm-4 mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email@adres.com">
-          </div>
-          <div class="col-12 col-sm-4 mb-3">
-            <label for="exampleFormControlInput2" class="form-label">Company</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Google">
-          </div>
-        </div>
-      <div class="mb-3 shadow">
-          <label for="exampleFormControlInput3" class="form-label">Message</label>
-          <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Write here ">
-      </div>
-      <div class="col-auto">
-          <button type="submit" class="btn btn-dark mb-3">Send</button>
-      </div>
+<div class="container">
+  <div class="col-md-6">
+    <h1>{% block title %} About {{ current_user.username }} {% endblock %}</h1>
+  </div>
+</div>
 
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="text-center">Big T</h1>
+      <h2 class="text-left">Bio:</h2>
+      <p class="text-left">
+          In the bustling city of London, a peculiar figure stood out among the crowds. Towering above most and unmistakably shaped like the letter T, Big T had a presence that was hard to ignore. His broad shoulders formed the top crossbar of the T, while his sturdy legs made up the vertical stem. This unique shape was just the beginning of his extraordinary story.
+          Big T was born in the picturesque countryside of the Netherlands. From a young age, he was different—not just because of his shape but also due to his immense strength and agility. The local children admired and were often in awe of him, especially when he joined in their games. Despite his unconventional form, Big T had an unyielding determination to fit in and excel.
+          As he grew older, Big T discovered a passion for rugby. The sport captivated him, and he devoted countless hours to honing his skills. His efforts paid off when he was recruited by a team in New Zealand, a country renowned for its rugby prowess. Moving halfway across the world was a daunting prospect, but Big T embraced the challenge.
+          New Zealand welcomed him with open arms. His teammates and the local community quickly grew fond of the friendly giant. On the rugby field, Big T was a force to be reckoned with. His unique shape gave him a distinct advantage—his wide reach made tackling him a herculean task for the opposition. His time in New Zealand was transformative, not just for his rugby career but also for his personal growth. He learned to adapt, to embrace his uniqueness, and to push beyond his limits.
+          Years later, an opportunity arose that brought Big T to the vibrant city of London. The city was a melting pot of cultures, bustling with life and possibilities. Big T joined a professional rugby team, where his fame and skills quickly spread. He became a beloved figure both on and off the field, known for his sportsmanship, dedication, and the unmistakable T-shaped silhouette that had become iconic.
+          But rugby was not Big T’s only talent. During his time in New Zealand, he had discovered a love for coding. What began as a hobby soon turned into another passion. He taught himself Python and found that he had a knack for it. This newfound skill opened doors to a different kind of career.
+          In London, when he wasn't training or playing rugby, Big T worked at a prestigious bank. Here, he was known as a Python legend. His ability to tackle complex coding problems with the same determination he displayed on the rugby field earned him respect and admiration from his colleagues. The bank valued his unique perspective and innovative solutions, which often stemmed from his unconventional way of thinking.
+          Despite his busy schedule, Big T never forgot his roots. He often visited the Netherlands, where he shared stories of his adventures and inspired young athletes to pursue their dreams, no matter how different they might seem. His journey from a small Dutch village to the bustling streets of London was a testament to the power of embracing one’s uniqueness and pursuing one’s passions with unwavering dedication.
+          In the heart of London, whether in the office or on the rugby pitch, Big T continued to leave an indelible mark on everyone he met. His story was a celebration of diversity, resilience, and the endless possibilities that come with embracing who you are.
+      </p>
+      <h2 class="text-left">Headshot:</h2>
+      <img src="{{ url_for('static', filename='images/letter_t.jpg') }}" class="img-fluid" alt="This is Big T">
+    </div>
+    <div class="col-md-6">
+        <h1 class="text-center">Pom</h1>
+        <h2 class="text-left">Bio:</h2>
+        <p class="text-left">To be made</p>
+        <h2 class="text-left">Headshot:</h2>
+        <p>To be taken</p>
     </div>
   </div>
+  <div>
+    <h3 id="contact">Contact</h3>
+      <div class="row">
+        <div class="col-12 col-sm-4 mb-3">
+            <label for="exampleFormControlInput0" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput0" placeholder="John Doe">
+        </div>
+        <div class="col-12 col-sm-4 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email@adres.com">
+        </div>
+        <div class="col-12 col-sm-4 mb-3">
+          <label for="exampleFormControlInput2" class="form-label">Company</label>
+          <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Google">
+        </div>
+      </div>
+    <div class="mb-3 shadow">
+        <label for="exampleFormControlInput3" class="form-label">Message</label>
+        <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Write here ">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-dark mb-3">Send</button>
+    </div>
+
+  </div>
+</div>
 
 {% endblock %}
