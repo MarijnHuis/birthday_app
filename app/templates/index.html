@@ -11,22 +11,21 @@
     </p>
   </div>
 </div>
-
   <h1>Birthday database</h1>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>LastName</th>
-      <th>FirstName</th>
-      <th>Email</th>
-      <th>Birthday</th>
-      <th>SevenDayReminder</th>
-      <th>OneDayReminder</th>
-      <th>SameDayReminder</th>
-    </tr>
+  <table class="table table-hover table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>LastName</th>
+        <th>FirstName</th>
+        <th>Email</th>
+        <th>Birthday</th>
+        <th>SevenDayReminder</th>
+        <th>OneDayReminder</th>
+        <th>SameDayReminder</th>
+      </tr>
+    </thead>
     {% for bday in birthdays %}
     <tr>
-      <td>{{ bday.id }}</td>
       <td>{{ bday.lastname }}</td>
       <td>{{ bday.firstname }}</td>
       <td>{{ bday.email }}</td>
