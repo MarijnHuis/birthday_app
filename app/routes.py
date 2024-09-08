@@ -40,26 +40,24 @@ def birthday_page():
         fname = form.firstname.data
         email = form.email.data
         bday = form.birthday.data
-        seven_day = form.seven_day_notify.data
-        one_day = form.one_day_notify.data
-        same_day = form.same_day_notify.data
 
-        new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=bday, seven_day_notify=seven_day, one_day_notify=one_day, same_day_notify=same_day)
+        new_bday = Birthday(lastname=lname, firstname=fname, email=email, birthday=bday)
         app.logger.info("Adding new birthday to db")
-        db.session.add(new_bday)
-        db.session.commit()
 
         return redirect(url_for('index'))
     app.logger.debug("Getting  birthdays and sorting...")
-    return render_template("birthdays.html", form=form)
 
-@app.route("/users")
+    query = sa.select(Birthday).order_by(Birthday.firstname.asc())
+    birthdays = db.session.scalars(query).all()
+
+    return render_template("birthdays.html", form=form, birthdays=birthdays)
+
+@app.route("/user/<username>")
 @login_required
-def users_page():
-    try:
-        return render_template('users_fake.html')
-    except:
-        abort(404)
+def user_page(username):
+    user: User = db.first_or_404(sa.select(User).where(User.username==username))
+    birthdays: Birthday = user.following
+    return render_template('user.html', user=user, birthdays=birthdays)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
