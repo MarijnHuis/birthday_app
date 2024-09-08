@@ -165,3 +165,4 @@ birthdays.db
 #.idea/
 
 .conda
+template_data.txt

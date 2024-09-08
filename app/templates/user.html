@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>{% block title %} {{ user.username.title() }} {% endblock %}</h1>
+    <h1>Following birthdays:</h1>
+    <hr>
+    {% for birthday in birthdays %}
+    <p>
+    {{ birthday.firstname }} {{ birthday.lastname }}: <b>{{ birthday.birthday }}</b>
+    </p>
+    {% endfor %}
+
+{% endblock %}

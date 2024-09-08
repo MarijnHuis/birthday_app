@@ -19,9 +19,6 @@
         <th>FirstName</th>
         <th>Email</th>
         <th>Birthday</th>
-        <th>SevenDayReminder</th>
-        <th>OneDayReminder</th>
-        <th>SameDayReminder</th>
       </tr>
     </thead>
     {% for bday in birthdays %}
@@ -30,9 +27,6 @@
       <td>{{ bday.firstname }}</td>
       <td>{{ bday.email }}</td>
       <td>{{ bday.birthday }}</td>
-      <td>{{ bday.seven_day_notify }}</td>
-      <td>{{ bday.one_day_notify }}</td>
-      <td>{{ bday.same_day_notify }}</td>
     </tr>
     {% endfor %}
   </table>
